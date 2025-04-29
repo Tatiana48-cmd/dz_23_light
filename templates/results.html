@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="page-title">Результаты поиска</h1>
+
+    {% if vacancies %}
+        <div class="vacancies-list">
+            {% for vacancy in vacancies %}
+            <div class="vacancy-card">
+                <h3>{{ vacancy.title }}</h3>
+                <p><i class="fas fa-building"></i> {{ vacancy.company }}</p>
+                <p><i class="fas fa-money-bill-wave"></i> {{ vacancy.salary }}</p>
+                <a href="{{ vacancy.link }}" target="_blank" class="btn">
+                    <i class="fas fa-external-link-alt"></i> Подробнее
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div style="text-align: center;">
+            <p>Вакансий не найдено</p>
+            <a href="{{ url_for('form') }}" class="btn">
+                <i class="fas fa-arrow-left"></i> Вернуться к поиску
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}

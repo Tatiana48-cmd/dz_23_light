@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="page-title">Добро пожаловать на наш сайт</h1>
+    <div style="text-align: center;">
+        <a href="{{ url_for('form') }}" class="btn btn-primary">
+            <i class="fas fa-search"></i> Начать поиск вакансий
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="page-title">Поиск вакансий</h1>
+
+    <form method="POST" class="search-form" action="{{ url_for('form') }}">
+        <div class="form-group">
+            <label for="specialization">Специальность:</label>
+            <input type="text" id="specialization" name="specialization" class="form-control"
+                   placeholder="Например: Python разработчик" required>
+        </div>
+
+        <div class="form-group">
+            <label for="region">Регион:</label>
+            <input type="text" id="region" name="region" class="form-control"
+                   placeholder="Например: Москва" required>
+        </div>
+
+        <div class="form-row" style="display: flex; gap: 15px;">
+            <div class="form-group" style="flex: 1;">
+                <label for="salary_from">Зарплата от:</label>
+                <input type="number" id="salary_from" name="salary_from" class="form-control"
+                       placeholder="Рублей">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label for="salary_to">Зарплата до:</label>
+                <input type="number" id="salary_to" name="salary_to" class="form-control"
+                       placeholder="Рублей">
+            </div>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center;">
+            <input type="checkbox" id="remote" name="remote" style="margin-right: 10px;">
+            <label for="remote" style="margin-bottom: 0;">Удалённая работа</label>
+        </div>
+
+        <button type="submit" class="btn">
+            <i class="fas fa-search"></i> Найти вакансии
+        </button>
+    </form>
+{% endblock %}
