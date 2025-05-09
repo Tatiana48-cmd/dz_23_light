@@ -35,11 +35,14 @@ def parse_hh_vacancies(specialization, region, salary_from=None, salary_to=None,
 
         for item in data.get('items', []):
             salary = format_salary(item.get('salary'))
+            schedule_remote = item.get('schedule', {}).get('id') == 'remote'
             vacancies.append({
                 'title': item.get('name'),
                 'company': item.get('employer', {}).get('name'),
                 'salary': salary,
-                'link': item.get('alternate_url')
+                'link': item.get('alternate_url'),
+                'region': region,  # Добавляем регион из параметров
+                'is_remote': schedule_remote  # Извлекаем из API
             })
 
         return vacancies
@@ -47,7 +50,6 @@ def parse_hh_vacancies(specialization, region, salary_from=None, salary_to=None,
     except Exception as e:
         logger.error(f"Ошибка парсера: {e}")
         return []
-
 
 def get_region_id(region_name):
     regions = {
